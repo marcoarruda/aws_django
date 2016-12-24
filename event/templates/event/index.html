@@ -1,0 +1,20 @@
+<h1>Christmas (25/12/2016)</h1>
+<h2>Subscriptions here!</h2>
+
+<form action="{% url 'event:subscribe' %}" method="post">
+  {% csrf_token %}
+  <label>Name</label><input type="text" name="name" value="" />
+  <br />
+  <label>E-mail</label><input type="text" name="email" value="" />
+  <br />
+  <input type="submit" value="Subscribe" />
+</form>
+
+<h3>Who is already subscribed?</h3>
+{% if subscription_list %}
+  {% for subscription in subscription_list %}
+      <p>{{ subscription.subscription_name }} at {{ subscription.subscription_datetime }}</p>
+  {% endfor %}
+{% else %}
+  <p>--- The list is empty. Be the first! ---</p>
+{% endif %}
